@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+1.times do 
+    temp = Listing.new
+    p location = Geocoder.search(Faker::Address.country).first.coordinates
+    temp.latitude = location[0]*(10**7)
+    temp.longitude = location[1]*(10**7)
+    temp.save
+end
