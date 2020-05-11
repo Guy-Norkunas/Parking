@@ -19,6 +19,10 @@
             document.getElementById('map'), {zoom: 4, center: uluru});
         // The marker, positioned at Uluru
         var marker = new google.maps.Marker({position: uluru, map: map});
+        <% @listings.each do |listing| %>
+            var location = {lat: <%= listing.latitude / 10**7 %>, lng: <%= listing.longitude/ 10**7 %>}
+            var marker2 = new google.maps.Marker({position: location, map: map});
+        <% end %>
     }
 </script>
 
