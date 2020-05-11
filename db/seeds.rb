@@ -8,7 +8,7 @@
 
 30.times do 
     temp = Listing.new
-    p location = Geocoder.search(Faker::Address.country).first.coordinates
+    location = Geocoder.search(Faker::Address.country).first.coordinates
     temp.latitude = location[0]*(10**7)
     temp.longitude = location[1]*(10**7)
     temp.save
