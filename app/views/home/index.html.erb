@@ -13,12 +13,13 @@
     // Initialize and add the map
     function initMap() {
         // The location of Uluru
-        var uluru = {lat: -25.344, lng: 131.036};
+        
+        var user = {lat: <%= @user_location[0] %>, lng: <%= @user_location[0] %>}
         // The map, centered at Uluru
         var map = new google.maps.Map(
-            document.getElementById('map'), {zoom: 4, center: uluru});
+            document.getElementById('map'), {zoom: 4, center: user});
         // The marker, positioned at Uluru
-        var marker = new google.maps.Marker({position: uluru, map: map});
+        var marker = new google.maps.Marker({position: user, map: map});
         <% @listings.each do |listing| %>
             var location = {lat: <%= listing.latitude / 10**7 %>, lng: <%= listing.longitude/ 10**7 %>}
             var marker2 = new google.maps.Marker({position: location, map: map});
