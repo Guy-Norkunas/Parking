@@ -12,6 +12,6 @@ class HomeController < ApplicationController
     results = Geocoder.search("2001:8003:418a:201:48c1:6e47:2d43:b498")
     location = results.first.address
     city = request.location.city
-    return city
+    return visitor_ip
   end
 end
