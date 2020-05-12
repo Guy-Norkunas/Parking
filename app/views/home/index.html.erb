@@ -10,12 +10,12 @@
 <div id="map"></div>
 <script>
     function initMap() {
-        // var user = {lat: <%= @user_location[0] %>, lng: <%= @user_location[0] %>};
-        var map = new google.maps.Map(document.getElementById('map'), {zoom: 4, center: {lat: 1, lng: 1}});
+        var user = {lat: <%= @user_location[0] %>, lng: <%= @user_location[0] %>};
+        var map = new google.maps.Map(document.getElementById('map'), {zoom: 4, center: user});
 
-        var marker = new google.maps.Marker({position: {lat: 1, lng: 1}, map: map});
+        var marker = new google.maps.Marker({position: user, map: map});
         <% @listings.each do |listing| %>
-            var location = {lat: <%= listing.latitude / 10**7 %>, lng: <%= listing.longitude/ 10**7 %>};
+            var location = {lat: <%= listing.latitude / 10.0**7 %>, lng: <%= listing.longitude/ 10.0**7 %>};
             var marker2 = new google.maps.Marker({position: location, map: map});
         <% end %>
     }
