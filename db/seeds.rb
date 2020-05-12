@@ -10,12 +10,12 @@ Location_Seeds = ["339, La Trobe St, Melbourne, VIC, 3000",
                 "249, Franklin St, Melbourne, VIC, 3004",
                 ]
 
-Location_Seeds.each do |street|
+Location_Seeds.each do |address|
     temp = Listing.new
     
-    location = Geocoder.search(street).first.coordinates
+    location = Geocoder.search(address).first.coordinates
 
-    temp.street = street
+    temp.address = address
     temp.latitude = location[0]*(10**7)
     temp.longitude = location[1]*(10**7)
     temp.save
