@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @test = request.location
     @coordinates = get_user_coordinates
     @listings = Listing.all
   end
