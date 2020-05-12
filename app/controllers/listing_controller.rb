@@ -4,6 +4,8 @@ class ListingController < ApplicationController
     end
 
     def create
-        render 'new'
+        permitted = params.require("address").permit("street_number", "street", "city", "state", "postcode", "country")
+        p permitted["street"]
+        redirect_to home_path
     end
 end
