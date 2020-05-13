@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2020_05_11_060301) do
     t.bigint "latitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "street"
+    t.string "address"
   end
 
 end
