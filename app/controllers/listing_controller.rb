@@ -23,5 +23,6 @@ class ListingController < ApplicationController
                         permitted["city"],
                         permitted["country"]]
             return address.compact.join(', ')
+            
         end
 end
