@@ -1,18 +1,18 @@
-<span>
-    <%= link_to 'home' %>
-</span>
-<span>
-    search bar
-</span>
-<span>
-    <%= link_to 'search' %>
-</span>
-<span>
-    <%= link_to 'manage', new_listing_path %>
-</span>
-<span>
-    <%= link_to 'bookings' %>
-</span>
-<span>
-    <%= link_to 'profile' %>
-</span>
+<div>
+    <%= request.location.city %>
+    <span>
+        <%= link_to 'home', home_path %>
+    </span>
+    <span>
+        <%= link_to 'search' %>
+    </span>
+    <span>
+        <%= link_to 'manage', manage_path %>
+    </span>
+    <span>
+        <%= link_to 'bookings' %>
+    </span>
+    <span>
+        <%= link_to 'profile' %>
+    </span>
+</div>

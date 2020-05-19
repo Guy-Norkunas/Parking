@@ -27,6 +27,7 @@ Location_Seeds.each do |address|
     temp.address = address
     temp.latitude = location[0]*(10**7)
     temp.longitude = location[1]*(10**7)
+    temp.available = true
     temp.save
 
     if i == 3

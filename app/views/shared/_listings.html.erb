@@ -1,0 +1,13 @@
+<% @listings.each do |listing| %>
+    <div>
+        <% if listing.available == true %>
+            <% address = listing.address.split(",") %>
+            <% address.shift %>
+            <p><%= address.join %></p>
+            <p>
+                <%= listing.user.email %>
+                <%= link_to 'show', listing_path(listing) %>
+            </p>
+        <% end %>
+    </div>
+<% end %>

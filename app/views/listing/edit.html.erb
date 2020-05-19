@@ -1,0 +1,8 @@
+<%= render 'shared/nav' %>
+
+<%= form_with scope: :listing, model: @listing, local: true, method: :patch do |f| %>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+
+    <%= f.submit %>
+<% end %>
