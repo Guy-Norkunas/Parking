@@ -17,6 +17,10 @@
         <% @listings.each do |listing| %>
             var location = {lat: <%= listing.latitude / 10.0**7 %>, lng: <%= listing.longitude/ 10.0**7 %>};
             var marker = new google.maps.Marker({position: location, map: map});
+
+            google.maps.event.addListener(marker, 'click', function() {
+                window.location.href = "<%= listing_url(listing) %>"
+            });
         <% end %>
     }
 </script>
