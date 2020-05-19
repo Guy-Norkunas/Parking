@@ -19,7 +19,7 @@
             var marker = new google.maps.Marker({position: location, map: map});
 
             google.maps.event.addListener(marker, 'click', function() {
-                window.location.href = "<%= listing_url(listing) %>"
+                window.location.href = "<%= listing_url(listing) %>";
             });
         <% end %>
     }

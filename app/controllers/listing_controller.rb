@@ -9,16 +9,20 @@ class ListingController < ApplicationController
     end
 
     def create
-        new_listing = Listing.new
+        new_listing = current_user.listings.new
 
         address = get_address
         new_listing.address = address
         location = Geocoder.search(address).first.coordinates
+
         new_listing.latitude = location[0]*(10**7)
         new_listing.longitude = location[1]*(10**7)
-        new_listing.save
 
-        redirect_to home_path
+        if new_listing.save
+            redirect_to home_path
+        else
+            render 'new'
+        end
     end
 
     def edit
