@@ -10,14 +10,29 @@ Location_Seeds = ["339, La Trobe St, Melbourne, VIC, 3000",
                 "249, Franklin St, Melbourne, VIC, 3004",
                 ]
 
+3.times do |i|
+    User.create(
+        email: "#{i}@gmail.com",
+        password: "password123",
+        password_confirmation: "password123"
+    )
+end
+
+i = 1
+
 Location_Seeds.each do |address|
-    temp = Listing.new
-    
+    temp = User.find(i).listings.new
     location = Geocoder.search(address).first.coordinates
 
     temp.address = address
     temp.latitude = location[0]*(10**7)
     temp.longitude = location[1]*(10**7)
     temp.save
+
+    if i == 3
+        i = 1
+    else
+        i += 1
+    end
 end
 
