@@ -6,7 +6,10 @@
         <p>
             <%= @listing.user.email %>
         </p>
-        <%= link_to 'edit', edit_listing_path(@listing) %>
-        <%= link_to 'delete', delete_listing_path(@listing), method: :delete %>
+        <% if can? :edit, @listing %>
+            <%= link_to 'edit', edit_listing_path(@listing) %>
+            <%= link_to 'delete', delete_listing_path(@listing), method: :delete %>
+        <% end %>
+        
     <% end %>
 </div>
