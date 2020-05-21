@@ -10,6 +10,13 @@ Location_Seeds = ["339, La Trobe St, Melbourne, VIC, 3000",
                 "249, Franklin St, Melbourne, VIC, 3004",
                 ]
 
+User.create(
+    email: "admin@admin.com"
+    password: "admin123"
+    password_confirmation: "admin123"
+    admin: true
+)
+
 3.times do |i|
     User.create(
         email: "#{i}@gmail.com",
