@@ -56,16 +56,6 @@ class ListingController < ApplicationController
             render 'edit'
         end
     end
-
-    def change
-        listing = Listing.find(params[:id])
-        if listing.available == true
-            listing.available = false
-        else
-            listing.available = true
-        end
-        redirect_to listing(listing)
-    end
     
 
     private
@@ -74,7 +64,8 @@ class ListingController < ApplicationController
             address = [permitted["street_number"], 
                         permitted["street"],
                         permitted["city"],
-                        permitted["country"]]
+                        permitted["country"],
+                        permitted["description"]]
             return address.compact.join(', ')
             
         end

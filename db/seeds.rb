@@ -11,11 +11,13 @@ Location_Seeds = ["339, La Trobe St, Melbourne, VIC, 3000",
                 ]
 
 User.create(
-    email: "admin@admin.com"
-    password: "admin123"
-    password_confirmation: "admin123"
+    email: "admin@admin.com",
+    password: "admin123",
+    password_confirmation: "admin123",
     admin: true
 )
+
+p "Admin created"
 
 3.times do |i|
     User.create(
@@ -25,7 +27,9 @@ User.create(
     )
 end
 
-i = 1
+p "Users created"
+
+i = 2
 
 Location_Seeds.each do |address|
     temp = User.find(i).listings.new
@@ -35,18 +39,21 @@ Location_Seeds.each do |address|
     temp.latitude = location[0]*(10**7)
     temp.longitude = location[1]*(10**7)
     temp.available = true
+    temp.description = Faker::TvShows::RickAndMorty.quote
     temp.save
 
-    if i == 3
-        i = 1
+    if i == 4
+        i = 2
     else
         i += 1
     end
 end
 
+p "Generated listings"
+
 10.times do 
     Listing.all.each do |listing|
-        temp = User.find(rand(1..3)).reviews.new
+        temp = User.find(rand(2..4)).reviews.new
         temp.review = Faker::Quote.yoda
         temp.listing_id = listing.id
         temp.rating = rand(1..5)
@@ -54,3 +61,4 @@ end
     end
 end
 
+p "Added reviews"

@@ -21,7 +21,10 @@ class Listing < ApplicationRecord
         else
             self.available = true
         end
-        self.save
-        return self
+        if self.save
+            return self
+        else
+            return home_path
+        end
     end
 end
