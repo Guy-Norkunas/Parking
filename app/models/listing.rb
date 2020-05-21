@@ -15,4 +15,13 @@ class Listing < ApplicationRecord
         self.save
     end
 
+    def change
+        if self.available
+            self.available = false
+        else
+            self.available = true
+        end
+        self.save
+        return self
+    end
 end

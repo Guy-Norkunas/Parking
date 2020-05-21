@@ -56,6 +56,16 @@ class ListingController < ApplicationController
             render 'edit'
         end
     end
+
+    def change
+        listing = Listing.find(params[:id])
+        if listing.available == true
+            listing.available = false
+        else
+            listing.available = true
+        end
+        redirect_to listing(listing)
+    end
     
 
     private
