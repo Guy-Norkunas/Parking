@@ -32,6 +32,7 @@ class ListingController < ApplicationController
 
     def show
         @listing = Listing.find(params[:id])
+        @coordinates = [@listing.latitude / 10.0**7, @listing.longitude / 10.0**7]
     end
 
     def delete

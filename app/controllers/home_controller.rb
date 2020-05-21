@@ -2,6 +2,7 @@ class HomeController < ApplicationController
 
   def index
     @coordinates = get_user_coordinates
+    p @coordinates
     @listings = Listing.all
   end
 

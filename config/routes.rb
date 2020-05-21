@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+  #routes for devise
+
   devise_for :users
+  
+  #routes for homepage
+
   root to: "home#index"
-
-  resource :temp
-
   get '/home', to: "home#index", as: "home"
 
+  #routes for listings
 
   get '/manage', to:  "listing#index", as: "manage"
   get '/new', to: "listing#new", as: "new_listing"
@@ -18,5 +21,10 @@ Rails.application.routes.draw do
 
   delete '/listing/:id', to: "listing#delete", as: "delete_listing"
 
-  
+  #routes for comments
+
+  post '/listing/:id', to: "review#create", as: "new_review"
+  get '/listing/:id/:reviewid', to: "review#edit", as: "edit_review"
+  patch 'listing/:id/:reviewid', to: "review#update", as: "update_review"
+  delete 'listing/:id/:reviewid', to: "review#destroy", as: "destroy_review"
 end

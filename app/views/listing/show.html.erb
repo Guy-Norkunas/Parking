@@ -1,15 +1,47 @@
 <%= render 'shared/nav' %>
 
-<div>
-    <% if @listing.available == true %>
+<% if @listing.available == true %>
+    <div>
         <p><%= @listing.address %></p>
         <p>
             <%= @listing.user.email %>
         </p>
+        <p>rating: <%= "⭐" * @listing.rating %></p>
         <% if can? :edit, @listing %>
             <%= link_to 'edit', edit_listing_path(@listing) %>
             <%= link_to 'delete', delete_listing_path(@listing), method: :delete %>
         <% end %>
-        
+    </div>
+
+    <%= render 'shared/map', listings: [@listing] %>
+
+    <br>
+    <p>New review:</p>
+    <% if can? :create, Review %>
+        <%= form_with scope: :review, local: true do |f| %>
+            <%= f.label :review %>
+            <%= f.text_field :review %>
+            <%= f.label :rating %>
+            <%= f.number_field(:rating, in: 1..5, step: 1) %>
+            <%= f.submit %>
+        <% end %>
+    <% else %>
+        <p>Please log in to add a review</p>
     <% end %>
-</div>
+    <br>
+
+    <p>Reviews:</p>
+
+    <% @listing.reviews.each do |review| %>
+        <div>
+            <p><%= review.review %> </p>
+            <p><%= review.user.email %>    <%= "⭐" * review.rating%></p>
+            <% if review.user == current_user %>
+                <%= link_to 'edit', edit_review_path(@listing, review) %>
+                <%= link_to 'delete', destroy_review_path(@listing, review), method: :delete %>
+            <% end %>
+        </div>
+        <br>
+    <% end %>
+
+<% end %>

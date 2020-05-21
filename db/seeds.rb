@@ -37,3 +37,13 @@ Location_Seeds.each do |address|
     end
 end
 
+10.times do 
+    Listing.all.each do |listing|
+        temp = User.find(rand(1..3)).reviews.new
+        temp.review = Faker::Quote.yoda
+        temp.listing_id = listing.id
+        temp.rating = rand(1..5)
+        temp.save
+    end
+end
+
