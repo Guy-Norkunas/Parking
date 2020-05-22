@@ -24,6 +24,14 @@
 
 <%= render 'shared/map', listings: [@listing] %>
 
+<p>Book this parking space:</p>
+
+<%= form_with scope: :booking, local: true, url: payment_path(@listing) do |f| %>
+    <%= f.label "book this listing for $#{@listing.price / 100.0} per hour for" %>
+    <%= f.number_field(:time, in: 1..24, step: 1) %> hours
+    <%= f.submit %>
+<% end %>
+
 <br>
 <p>New review:</p>
 <% if can? :create, Review %>
@@ -52,3 +60,4 @@
     </div>
     <br>
 <% end %>
+

@@ -54,3 +54,5 @@ gem "geocoder", "~> 1.6"
 gem "faker", "~> 2.11"
 
 gem "cancancan", "~> 3.1"
+
+gem "stripe", "~> 5.22"

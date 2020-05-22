@@ -19,6 +19,10 @@ class ListingController < ApplicationController
         new_listing.latitude = location[0]*(10**7)
         new_listing.longitude = location[1]*(10**7)
 
+        # complex price calculation algorithm
+
+        new_listing.price = rand(1000..2000)
+
         if new_listing.save
             redirect_to home_path
         else

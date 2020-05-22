@@ -40,6 +40,7 @@ Location_Seeds.each do |address|
     temp.longitude = location[1]*(10**7)
     temp.available = true
     temp.description = Faker::TvShows::RickAndMorty.quote
+    temp.price = rand(1000..2000)
     temp.save
 
     if i == 4

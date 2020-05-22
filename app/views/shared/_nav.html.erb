@@ -13,9 +13,6 @@
         <%= link_to 'bookings' %>
     </span>
     <span>
-        <%= link_to 'profile' %>
-    </span>
-    <span>
         <% if current_user == nil %>
             <%= link_to 'login/signup', new_user_session_path %>
         <% else %>

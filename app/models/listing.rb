@@ -1,6 +1,7 @@
 class Listing < ApplicationRecord
     belongs_to :user
     has_many :reviews
+    has_many :bookings
     reverse_geocoded_by :latitude, :longitude
     after_validation :reverse_geocode
 
@@ -21,10 +22,15 @@ class Listing < ApplicationRecord
         else
             self.available = true
         end
+
         if self.save
             return self
         else
             return home_path
         end
+    end
+
+    def update_booking
+        return 1
     end
 end

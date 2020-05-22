@@ -2,7 +2,7 @@
     <div>
         <% address = listing.address.split(",") %>
         <% address.shift %>
-        <p><%= address.join %></p>
+        <p><%= address.join %> cost: <%= listing.price / 100.0 %>$/h</p>
         <p>rating: <%= "⭐" * listing.rating %></p>
         <p>
             <%= listing.user.email %>

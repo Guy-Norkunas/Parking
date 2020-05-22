@@ -27,4 +27,10 @@ Rails.application.routes.draw do
   get '/listing/:id/:reviewid', to: "review#edit", as: "edit_review"
   patch 'listing/:id/:reviewid', to: "review#update", as: "update_review"
   delete 'listing/:id/:reviewid', to: "review#destroy", as: "destroy_review"
+
+  #routes for bookings
+
+  post '/payment/:id', to: "booking#payments", as: "payment"
+  get '/payment/:id', to: "booking#index", as: "get_payment"
+
 end
