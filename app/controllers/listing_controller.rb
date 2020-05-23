@@ -47,7 +47,6 @@ class ListingController < ApplicationController
         listing = Listing.find(params[:id])
 
         listing.update(params.require(:listing).permit(:address))
-        p listing.address
 
         location = Geocoder.search(listing.address).first.coordinates
 
@@ -68,8 +67,7 @@ class ListingController < ApplicationController
             address = [permitted["street_number"], 
                         permitted["street"],
                         permitted["city"],
-                        permitted["country"],
-                        permitted["description"]]
+                        permitted["country"]]
             return address.compact.join(', ')
             
         end

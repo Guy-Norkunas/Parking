@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_23_062104) do
+ActiveRecord::Schema.define(version: 2020_05_23_081802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2020_05_23_062104) do
     t.integer "rating", default: 0
     t.string "description"
     t.integer "price"
-    t.integer "booked"
+    t.integer "booked", default: -9999
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
 

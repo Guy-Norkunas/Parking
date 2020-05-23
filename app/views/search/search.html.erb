@@ -1,1 +1,13 @@
-<%= p params %>
+<%= render 'shared/nav' %>
+
+<% if @listings == nil %>
+
+    <p>Couldn't find any listings in that area</p>
+
+<% else %>
+
+    <%= render 'shared/map', listings: @listings %>
+
+    <%= render 'shared/listings' %>
+
+<% end %>

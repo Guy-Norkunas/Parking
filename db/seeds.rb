@@ -52,7 +52,7 @@ end
 
 p "Generated listings"
 
-10.times do 
+5.times do 
     Listing.all.each do |listing|
         temp = User.find(rand(2..4)).reviews.new
         temp.review = Faker::Quote.yoda
@@ -65,5 +65,9 @@ end
 p "Added reviews"
 
 Listing.all.each do |listing|
-    listing.bookings.create(time: rand(1..4), user_id: rand(2..4))
+    if rand(1..3) == 1
+        listing.bookings.create(time: rand(1..4), user_id: rand(2..4))
+    end
 end
+
+p "added bookings"

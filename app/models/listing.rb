@@ -35,8 +35,4 @@ class Listing < ApplicationRecord
             return home_path
         end
     end
-
-    def update_booking
-        return 1
-    end
 end

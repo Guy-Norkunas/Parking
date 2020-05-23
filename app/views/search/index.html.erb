@@ -1,14 +1,12 @@
 <%= render 'shared/nav' %>
 
 enter an address
-enter a search distance
-enter a minimal rating
   </head>
 
   <body>
     <div id="locationField">
       <input id="autocomplete"
-             placeholder="Enter your address"
+             placeholder="Search for listings"
              onFocus="geolocate()"
              type="text"/>
     </div>
@@ -17,7 +15,7 @@ enter a minimal rating
                the locations relevant to your app. For more information, see
          https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
     -->
-    <form action="/new", method="post">
+    <form action="/search", method="post">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
     <table id="address">
@@ -28,21 +26,24 @@ enter a minimal rating
       </tr>
       <tr>
         <td class="label">City</td>
-        <td class="wideField" colspan="3"><input class="field" name="address[city]" id="locality" disabled="true"/></td>
+        <td class="wideField" colspan="3"><input class="field" name="search[city]" id="locality" disabled="true"/></td>
       </tr>
       <tr>
         <td class="label">State</td>
-        <td class="slimField"><input class="field" name="address[state]" id="administrative_area_level_1" disabled="true"/></td>
+        <td class="slimField"><input class="field" name="search[state]" id="administrative_area_level_1" disabled="true"/></td>
         <td class="label">Postcode</td>
-        <td class="wideField"><input class="field" name="address[postcode]" id="postal_code" disabled="true"/></td>
+        <td class="wideField"><input class="field" name="search[postcode]" id="postal_code" disabled="true"/></td>
       </tr>
       <tr>
         <td class="label">Country</td>
-        <td class="wideField" colspan="3"><input class="field" name="address[country]" id="country" disabled="true"/></td>
+        <td class="wideField" colspan="3"><input class="field" name="search[country]" id="country" disabled="true"/></td>
       </tr>
     </table>
-        <label>Description</label>
-        <input type="text", name="address[description]">
+        <label>Enter a maximum distance</label>
+        <input type="number", name="search[distance]", min="1", max="1000">
+
+        <label>Enter a minimum rating</label>
+        <input type="number", name="search[rating]", min="1", max="5">
         
         <input type="submit" value="Submit">
     </form>
@@ -120,5 +121,7 @@ function geolocate() {
     </script>
     <script src=<%="https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.googleapi}&libraries=places&callback=initAutocomplete"%>
         async defer></script>
+
+    
   </body>
 </html>
