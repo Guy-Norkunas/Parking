@@ -1,15 +1,22 @@
 class BookingController < ApplicationController
-    def payments
-        temp = current_user.bookings.new(params.require(:booking).permit(:time))
-        temp.listing_id = params[:id]
-        if temp.save
-            @listing = Listing.find(params[:id])
-            @listing.update_booking
-        else
-            redirect_to Listing.find(params[:id])
-        end 
-    end
+  before_action :authenticate_user!
+  
+  def index
+    @bookings = current_user.bookings.all
+  end
+
+  def payments
+      temp = current_user.bookings.new(params.require(:booking).permit(:time))
+      temp.listing_id = params[:id]
+      if temp.save
+          @listing = Listing.find(params[:id])
+          @listing.update_booking
+      else
+          redirect_to Listing.find(params[:id])
+      end 
+  end
 end
+
 
 def get_stripe_id
     @listing = Listing.find(params[:id])

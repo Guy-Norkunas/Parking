@@ -63,3 +63,7 @@ p "Generated listings"
 end
 
 p "Added reviews"
+
+Listing.all.each do |listing|
+    listing.bookings.create(time: rand(1..4), user_id: rand(2..4))
+end

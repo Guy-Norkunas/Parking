@@ -16,6 +16,12 @@ class Listing < ApplicationRecord
         self.save
     end
 
+    after_find do |listing|
+        if (Time.now.day * 100 + Time.now.hour) < listing.booked
+            listing.available = false
+        end
+    end
+
     def change
         if self.available
             self.available = false

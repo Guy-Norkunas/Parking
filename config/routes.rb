@@ -31,6 +31,11 @@ Rails.application.routes.draw do
   #routes for bookings
 
   post '/payment/:id', to: "booking#payments", as: "payment"
-  get '/payment/:id', to: "booking#index", as: "get_payment"
+  get '/bookings', to: "booking#index", as: "bookings"
+
+  #routes for search
+
+  get '/search', to: "search#index", as: "search_page"
+  post '/search', to: "search#search", as: "search"
 
 end
