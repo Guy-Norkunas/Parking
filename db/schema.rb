@@ -26,14 +26,14 @@ ActiveRecord::Schema.define(version: 2020_05_23_081802) do
   end
 
   create_table "listings", force: :cascade do |t|
-    t.bigint "longitude"
-    t.bigint "latitude"
+    t.float "longitude"
+    t.float "latitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "address"
     t.bigint "user_id", null: false
-    t.boolean "available"
-    t.integer "rating", default: 0
+    t.boolean "available", default: false
+    t.integer "rating", default: 5
     t.string "description"
     t.integer "price"
     t.integer "booked", default: -9999

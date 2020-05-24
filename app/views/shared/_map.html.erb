@@ -13,7 +13,7 @@
         var map = new google.maps.Map(document.getElementById('map'), {zoom: 14.5, center: {lat: <%= @coordinates[0] %>, lng: <%= @coordinates[1] %>}});
 
         <% listings.each do |listing| %>
-            var location = {lat: <%= listing.latitude / 10.0**7 %>, lng: <%= listing.longitude/ 10.0**7 %>};
+            var location = {lat: <%= listing.latitude %>, lng: <%= listing.longitude %>};
             var marker = new google.maps.Marker({position: location, map: map});
 
             google.maps.event.addListener(marker, 'click', function() {

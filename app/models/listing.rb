@@ -22,7 +22,7 @@ class Listing < ApplicationRecord
         end
     end
 
-    def change
+    def flip
         if self.available
             self.available = false
         else
@@ -30,9 +30,9 @@ class Listing < ApplicationRecord
         end
 
         if self.save
-            return self
+            return true
         else
-            return home_path
+            return false
         end
     end
 end

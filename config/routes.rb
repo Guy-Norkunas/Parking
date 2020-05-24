@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   delete '/listing/:id', to: "listing#delete", as: "delete_listing"
 
+  get '/listing/:id/change', to: "listing#change", as: "change"
+
   #routes for comments
 
   post '/listing/:id', to: "review#create", as: "new_review"

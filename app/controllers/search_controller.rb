@@ -3,24 +3,35 @@ class SearchController < ApplicationController
     end
 
     def search
-        address = get_address
         @listings = []
+        address = get_address
         @coordinates = Geocoder.search(address).first.coordinates
-
         Listing.all.each do |listing|
-            if listing.distance_to(@coordinates, :km) < 100000 && listing.available
+            if check_listing(listing, @coordinates)
                 @listings << listing
             end
         end
     end
 
     private
-        def search_params
+        def check_listing(listing, coordinates)
 
+            permitted = params.require("search").permit("distance", "rating")
+
+            distance = permitted["distance"].to_i
+            rating = permitted["rating"].to_i
+
+            if (listing.distance_to(coordinates, :km) <= (distance) && 
+                listing.rating >= rating &&
+                listing.available)
+                return true
+            else
+                return false
+            end
         end
 
         def get_address
-            permitted = params.require("address").permit("street_number", "street", "city", "state", "postcode", "country")
+            permitted = params.require("search").permit("street_number", "street", "city", "state", "postcode", "country")
             address = [permitted["street_number"], 
                         permitted["street"],
                         permitted["city"],

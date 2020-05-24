@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     @coordinates = get_user_coordinates
     @listings = []
     Listing.all.each do |listing|
-      if listing.distance_to(@coordinates, :km) < 100000 && listing.available
+      if listing.distance_to(@coordinates, :km) < 100 && listing.available
         @listings << listing
       end
     end

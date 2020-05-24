@@ -16,8 +16,8 @@ class ListingController < ApplicationController
         new_listing.address = address
         location = Geocoder.search(address).first.coordinates
 
-        new_listing.latitude = location[0]*(10**7)
-        new_listing.longitude = location[1]*(10**7)
+        new_listing.latitude = location[0]
+        new_listing.longitude = location[1]
 
         # complex price calculation algorithm
 
@@ -36,7 +36,7 @@ class ListingController < ApplicationController
 
     def show
         @listing = Listing.find(params[:id])
-        @coordinates = [@listing.latitude / 10.0**7, @listing.longitude / 10.0**7]
+        @coordinates = [@listing.latitude, @listing.longitude]
     end
 
     def delete
@@ -50,13 +50,22 @@ class ListingController < ApplicationController
 
         location = Geocoder.search(listing.address).first.coordinates
 
-        listing.latitude = location[0]*(10**7)
-        listing.longitude = location[1]*(10**7)
+        listing.latitude = location[0]
+        listing.longitude = location[1]
 
         if listing.save
             redirect_to listing
         else
             render 'edit'
+        end
+    end
+
+    def change
+        listing = Listing.find(params[:id])
+        if listing.flip
+            redirect_to listing
+        else
+            redirect_to home_path
         end
     end
     

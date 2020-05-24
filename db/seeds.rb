@@ -36,8 +36,8 @@ Location_Seeds.each do |address|
     location = Geocoder.search(address).first.coordinates
 
     temp.address = address
-    temp.latitude = location[0]*(10**7)
-    temp.longitude = location[1]*(10**7)
+    temp.latitude = location[0]
+    temp.longitude = location[1]
     temp.available = true
     temp.description = Faker::TvShows::RickAndMorty.quote
     temp.price = rand(1000..2000)

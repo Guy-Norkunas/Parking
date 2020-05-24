@@ -10,7 +10,7 @@ class Ability
         can :manage, :all
       else
         can [:index, :show, :new, :create], Listing
-        can [:edit, :update, :destroy], Listing, user_id: user.id
+        can [:edit, :update, :destroy, :change], Listing, user_id: user.id
         can [:create], Review, user_id: user.id
       end
     
