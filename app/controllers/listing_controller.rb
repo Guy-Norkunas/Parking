@@ -20,8 +20,14 @@ class ListingController < ApplicationController
         new_listing.longitude = location[1]
 
         # complex price calculation algorithm
-
         new_listing.price = rand(1000..2000)
+
+
+        permitted = params.require(:other).permit(:description, :picture)
+
+        new_listing.description = permitted[:description]
+        new_listing.picture.attach(permitted[:picture])
+
 
         if new_listing.save
             redirect_to home_path

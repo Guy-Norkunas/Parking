@@ -2,6 +2,7 @@ class Listing < ApplicationRecord
     belongs_to :user
     has_many :reviews
     has_many :bookings
+    has_one_attached :picture
     reverse_geocoded_by :latitude, :longitude
     after_validation :reverse_geocode
 

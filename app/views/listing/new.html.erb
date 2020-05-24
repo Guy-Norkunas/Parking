@@ -13,8 +13,7 @@
                the locations relevant to your app. For more information, see
          https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
     -->
-    <form action="/new", method="post">
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= form_with scope: :other, local: true do |f| %>
 
     <table id="address">
       <tr>
@@ -37,11 +36,17 @@
         <td class="wideField" colspan="3"><input class="field" name="address[country]" id="country" disabled="true"/></td>
       </tr>
     </table>
-        <label>Description</label>
-        <input type="text", name="address[description]">
-        
+        <%= f.label :description %>
+        <%= f.text_field :description %>
+        <div>
+          <%= f.label :picture %> 
+          <%= f.file_field :picture, accept: 'image/png,image/gif,image/jpeg,image/jpg' %>
+        </div>
+
+
         <input type="submit" value="Submit">
-    </form>
+
+    <% end %>
     <script>
 // This sample uses the Autocomplete widget to help the user select a
 // place, then it retrieves the address components associated with that

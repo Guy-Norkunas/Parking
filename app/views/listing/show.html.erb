@@ -22,6 +22,8 @@
     <% end %>
 </div>
 
+<%= image_tag @listing.picture if @listing.picture.attached? %>
+
 <%= render 'shared/map', listings: [@listing] %>
 
 <p>Book this parking space:</p>
