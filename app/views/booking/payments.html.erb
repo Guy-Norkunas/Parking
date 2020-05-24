@@ -1,0 +1,25 @@
+
+<%= render 'shared/nav' %>
+
+<h1>Payment confirmation page</h1>
+
+<p>Please confirm that you want to book a park at <%= @listing.address %> for <%= @listing.bookings.last.time %> hours</p>
+
+
+<%= form_tag payment_path do %>
+<article>
+  <% if flash[:error].present? %>
+  <div id="error_explanation">
+    <p><%= flash[:error] %></p>
+  </div>
+  <% end %>
+  <label class="amount">
+  <span>Amount: $<%= @listing.price * @listing.bookings.last.time / 100.0  %></span>
+  </label>
+</article>
+<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+  data-key="<%= Rails.application.credentials.dig(:stripe, :public_key) %>"
+  data-description="<%= @listing.address %> <%= @listing.description%>"
+  data-amount="<%= @listing.price * @listing.bookings.last.time / 100.0 %>"
+  data-locale="auto"></script>
+<% end %>

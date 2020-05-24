@@ -1,0 +1,11 @@
+<% @listings.each do |listing| %>
+    <div>
+        <p><%= listing.address %> cost: <%= listing.price / 100.0 %>$/h</p>
+        <p>rating: <%= "⭐" * listing.rating %></p>
+        <p>
+            <%= listing.user.email %>
+            <%= link_to 'show', listing_path(listing) %>
+        </p>
+    </div>
+    <br>
+<% end %>

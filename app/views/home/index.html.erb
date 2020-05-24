@@ -1,26 +1,13 @@
 <%= render 'shared/nav' %>
 
-<style>
-    #map {
-        height: 400px;
-        width: 80%; 
-    }
-</style>
+<% if @listings == nil %>
 
-<h3>Car parks</h3>
-<div id="map"></div>
-<script>
-    function initMap() {
+    <p>Couldn't find any listings in your area</p>
 
-        var map = new google.maps.Map(document.getElementById('map'), {zoom: 14.5, center: {lat: <%= @coordinates[0] %>, lng: <%= @coordinates[1] %>}});
+<% else %>
 
-        <% @listings.each do |listing| %>
-            var location = {lat: <%= listing.latitude / 10.0**7 %>, lng: <%= listing.longitude/ 10.0**7 %>};
-            var marker = new google.maps.Marker({position: location, map: map});
-        <% end %>
-    }
-</script>
+    <%= render 'shared/map', listings: @listings %>
 
-<script async defer
-    src=<%= "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.googleapi}&callback=initMap" %>>
-</script>
+    <%= render 'shared/listings' %>
+
+<% end %>

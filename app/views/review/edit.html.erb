@@ -1,0 +1,9 @@
+<%= render 'shared/nav' %>
+
+<%= form_with model: @review, local: true, url: update_review_path(@review.listing.id, @review), method: :patch do |f| %>
+    <%= f.label :review %>
+    <%= f.text_field :review %>
+    <%= f.label :rating %>
+    <%= f.number_field(:rating, in: 1..5, step: 1) %>
+    <%= f.submit %>
+<% end %>

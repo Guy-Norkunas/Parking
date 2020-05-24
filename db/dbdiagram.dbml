@@ -1,0 +1,43 @@
+
+Table users as U {
+  id int [pk, increment]
+  full_name varchar
+  email varchar
+  password varchar
+  created_at timestamp
+  admin boolean
+}
+
+Table listings {
+  id int [pk, increment]
+  longitude float
+  latitude float
+  price integer
+  description varchar
+  "created at" varchar
+  user_id int [ref: > U.id]
+  booked integer
+  address varchar
+  rating integer
+}
+
+Table bookings {
+  id int [pk, increment]
+  time int
+  user_id int [ref: > U.id]
+  listing_id int [ref: > listings.id]
+}
+
+Table images {
+  id int [pk, increment]
+  url varchar
+  listing_id int [ref: > listings.id]
+}
+
+Table reviews {
+  id int [pk, increment]
+  review varchar
+  rating integer
+  listing_id int [ref: > listings.id]
+  user_id int [ref: > U.id]
+}
