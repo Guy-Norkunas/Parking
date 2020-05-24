@@ -6,11 +6,11 @@ class BookingController < ApplicationController
   end
 
   def payments
+      @listing = Listing.find(params[:id])
       temp = current_user.bookings.new(params.require(:booking).permit(:time))
       temp.listing_id = params[:id]
-      if temp.save
-          @listing = Listing.find(params[:id])
-          @listing.update_booking
+      if temp.save && @listing.available
+          @listing.booked = temp.time
       else
           redirect_to Listing.find(params[:id])
       end 
@@ -41,4 +41,8 @@ def get_stripe_id
     ).id
     render :json => {id: session_id, stripe_public_key: Rails.application.credentials.dig(:stripe, :public_key)}
   end
+
   
+
+  
+ 
