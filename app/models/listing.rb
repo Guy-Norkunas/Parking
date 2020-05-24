@@ -6,6 +6,15 @@ class Listing < ApplicationRecord
     reverse_geocoded_by :latitude, :longitude
     after_validation :reverse_geocode
 
+    validates :longitude, presence: true
+    validates :latitude, presence: true
+    validates :address, presence: true
+    validates :description, presence: true
+    validates :rating, presence: true
+    validates :rating, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 5} 
+    validates :price, presence: true
+    validates :price, numericality: {greater_than_or_equal_to: 0}
+
     def update_rating
         i = 0
         total = 0

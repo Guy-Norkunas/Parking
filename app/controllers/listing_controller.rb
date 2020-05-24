@@ -58,6 +58,7 @@ class ListingController < ApplicationController
 
         listing.latitude = location[0]
         listing.longitude = location[1]
+        
 
         if listing.save
             redirect_to listing
