@@ -30,7 +30,7 @@ class ListingController < ApplicationController
 
 
         if new_listing.save
-            redirect_to home_path
+            redirect_to manage_path
         else
             render 'new'
         end
