@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><%= listing.address %></h5>
                     <p class="card-text">cost: <%= listing.price / 100.0 %>$/h</p>
-                    <%= link_to 'show', listing_path(listing), class: "card-text" %>
+                    <%= link_to 'see listing', listing_path(listing), class: "card-text" %>
                     <p class="card-text"><small class="text-muted"><%= listing.user.email %></small></p>
                 </div>
             </div>
