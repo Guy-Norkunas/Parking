@@ -60,4 +60,4 @@ gem "stripe", "~> 5.22"
 gem "aws-sdk-s3", "~> 1.66"
 
 # Bootstrap
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.3.1'
