@@ -1,11 +1,14 @@
 <% @listings.each do |listing| %>
-    <div>
-        <p><%= listing.address %> cost: <%= listing.price / 100.0 %>$/h</p>
-        <p>rating: <%= "⭐" * listing.rating %></p>
-        <p>
-            <%= listing.user.email %>
-            <%= link_to 'show', listing_path(listing) %>
-        </p>
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><%= listing.address %></h5>
+                    <p class="card-text">cost: <%= listing.price / 100.0 %>$/h</p>
+                    <%= link_to 'show', listing_path(listing), class: "card-text" %>
+                    <p class="card-text"><small class="text-muted"><%= listing.user.email %></small></p>
+                </div>
+            </div>
+        </div>
     </div>
-    <br>
 <% end %>
