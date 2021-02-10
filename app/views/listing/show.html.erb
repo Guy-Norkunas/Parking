@@ -2,29 +2,31 @@
 
 
 <div>
-    <p><%= @listing.address %></p>
-    <p><%= @listing.user.email %></p>
-    <p><%= @listing.description %></p>
+    <span>
+        <p><%= @listing.address %></p>
+        <p><%= @listing.user.email %></p>
+        <p><%= @listing.description %></p>
 
-    <p>rating: <%= "⭐" * @listing.rating %></p>
+        <p>rating: <%= "⭐" * @listing.rating %></p>
 
-    <p>
-        <% if can? :edit, @listing %>
-        
-            <% if @listing.available %>
-                <%= link_to 'make unavailable', change_path(@listing) %>
-            <% else %>
-                <%= link_to 'make available', change_path(@listing) %>
+        <p>
+            <% if can? :edit, @listing %>
+            
+                <% if @listing.available %>
+                    <%= link_to 'make unavailable', change_path(@listing) %>
+                <% else %>
+                    <%= link_to 'make available', change_path(@listing) %>
+                <% end %>
+
+                <%= link_to 'edit', edit_listing_path(@listing) %>
+                <%= link_to 'delete', delete_listing_path(@listing), method: :delete %>
             <% end %>
+        </p>
+    <span>
 
-            <%= link_to 'edit', edit_listing_path(@listing) %>
-            <%= link_to 'delete', delete_listing_path(@listing), method: :delete %>
-        <% end %>
-    </p>
-
-    <div style="height:100%;">
+    <span style="height:100%;">
         <%= image_tag @listing.picture if @listing.picture.attached? %>
-    </div>
+    </span>
 </div>
 
 <%= render 'shared/map', listings: [@listing] %>
