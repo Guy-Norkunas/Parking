@@ -3,11 +3,13 @@
 
 
 <div>
-    <p><%= @listing.address %></p>
-    <p><%= @listing.user.email %></p>
-    <p><%= @listing.description %></p>
+    <div style="width: 70vw; background-colour:white;">
+        <p><%= @listing.address %></p>
+        <p><%= @listing.user.email %></p>
+        <p><%= @listing.description %></p>
 
-    <p>rating: <%= "⭐" * @listing.rating %></p>
+        <p>rating: <%= "⭐" * @listing.rating %></p>
+    </div>
 
     <% if can? :edit, @listing %>
     
@@ -22,7 +24,7 @@
     <% end %>
 </div>
 
-<%= image_tag @listing.picture if @listing.picture.attached? %>
+<div><%= image_tag @listing.picture if @listing.picture.attached? %></div>
 
 <%= render 'shared/map', listings: [@listing] %>
 
