@@ -1,30 +1,33 @@
 <%= render 'shared/nav' %>
 
 
+<div style="margin-top:15px; width:95%; background-color:white;">
+    <div style="margin-left:20%; display:flex; align-items:flex-start;">
+        <div style="width: 70vw;">
+            <p><%= @listing.address %></p>
+            <p><%= @listing.user.email %></p>
+            <p><%= @listing.description %></p>
 
-<div>
-    <div style="width: 70vw; background-colour:white;">
-        <p><%= @listing.address %></p>
-        <p><%= @listing.user.email %></p>
-        <p><%= @listing.description %></p>
+            <p>rating: <%= "⭐" * @listing.rating %></p>
+        </div>
 
-        <p>rating: <%= "⭐" * @listing.rating %></p>
+        <% if can? :edit, @listing %>
+        
+            <% if @listing.available %>
+                <%= link_to 'make unavailable', change_path(@listing) %>
+            <% else %>
+                <%= link_to 'make available', change_path(@listing) %>
+            <% end %>
+
+            <%= link_to 'edit', edit_listing_path(@listing) %>
+            <%= link_to 'delete', delete_listing_path(@listing), method: :delete %>
+        <% end %>
     </div>
 
-    <% if can? :edit, @listing %>
-    
-        <% if @listing.available %>
-            <%= link_to 'make unavailable', change_path(@listing) %>
-        <% else %>
-            <%= link_to 'make available', change_path(@listing) %>
-        <% end %>
-
-        <%= link_to 'edit', edit_listing_path(@listing) %>
-        <%= link_to 'delete', delete_listing_path(@listing), method: :delete %>
-    <% end %>
+    <div>
+        <%= image_tag @listing.picture if @listing.picture.attached? %>
+    </div>
 </div>
-
-<div><%= image_tag @listing.picture if @listing.picture.attached? %></div>
 
 <%= render 'shared/map', listings: [@listing] %>
 
