@@ -58,3 +58,8 @@ gem "cancancan", "~> 3.1"
 gem "stripe", "~> 5.22"
 
 gem "aws-sdk-s3", "~> 1.66"
+
+# Bootstrap
+gem 'bootstrap', '~> 4.1.1'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 5.0'
