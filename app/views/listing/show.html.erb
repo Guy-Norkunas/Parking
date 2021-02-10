@@ -32,7 +32,7 @@
 <%= render 'shared/map', listings: [@listing] %>
 
 
-<div style="width:80vw; display:flex; background-color:floralwhite; margin-top:15px; margin-bottom:15px; border-radius:5px; padding:10px; justify-items: center;">
+<div style="display:flex; background-color:floralwhite; margin-top:15px; margin-bottom:15px; border-radius:5px; padding:10px; justify-items: center;">
     <%= form_with scope: :booking, local: true, url: payment_path(@listing) do |f| %>
         <%= f.label "book this listing for $#{@listing.price / 100.0} per hour for" %>
         <%= f.number_field(:time, in: 1..24, step: 1) %> hours
@@ -40,7 +40,7 @@
     <% end %>
 </div>
 
-<div style="width:60vw; display:flex; align-items:center; background-color:floralwhite; margin-top:15px; margin-bottom:15px; border-radius:5px; padding:10px; justify-items: center;">
+<div style="display:flex; align-items:center; background-color:floralwhite; margin-top:15px; margin-bottom:15px; border-radius:5px; padding:10px; justify-items: center;">
     <% if can? :create, Review %>
         <%= form_with scope: :review, local: true do |f| %>
             <%= f.label :review %>
@@ -56,18 +56,19 @@
 
 <div style="width:40vw; display:flex; align-items:center; background-color:floralwhite; margin-top:15px; margin-bottom:15px; border-radius:5px; padding:10px; justify-items: center;">
     
-
-    <% @listing.reviews.each do |review| %>
-        <div>
-            <p><%= review.review %> </p>
-            <p><%= "⭐" * review.rating%></p>
-            <p><%= review.user.email %></p>    
-            <% if review.user == current_user %>
-                <%= link_to 'edit', edit_review_path(@listing, review) %>
-                <%= link_to 'delete', destroy_review_path(@listing, review), method: :delete %>
-            <% end %>
-        </div>
-        <br>
-    <% end %>
+    <div>
+        <% @listing.reviews.each do |review| %>
+            <div>
+                <p><%= review.review %> </p>
+                <p><%= "⭐" * review.rating%></p>
+                <p><%= review.user.email %></p>    
+                <% if review.user == current_user %>
+                    <%= link_to 'edit', edit_review_path(@listing, review) %>
+                    <%= link_to 'delete', destroy_review_path(@listing, review), method: :delete %>
+                <% end %>
+            </div>
+            <br>
+        <% end %>
+    <div>
 
 </div>
