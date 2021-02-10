@@ -32,21 +32,15 @@
 <%= render 'shared/map', listings: [@listing] %>
 
 
-<div style="width:80vw; display:flex; justify-content:space-evenly; background-color:floralwhite; margin-top:15px; margin-bottom:15px; border-radius:5px; padding:10px;">
-    <div>
-        <p>Book this parking space:</p>
-    </div>
-
-    <div>
-        <%= form_with scope: :booking, local: true, url: payment_path(@listing) do |f| %>
-            <%= f.label "book this listing for $#{@listing.price / 100.0} per hour for" %>
-            <%= f.number_field(:time, in: 1..24, step: 1) %> hours
-            <%= f.submit %>
-        <% end %>
-    </div>
+<div style="width:80vw; display:flex; background-color:floralwhite; margin-top:15px; margin-bottom:15px; border-radius:5px; padding:10px;">
+    <%= form_with scope: :booking, local: true, url: payment_path(@listing) do |f| %>
+        <%= f.label "book this listing for $#{@listing.price / 100.0} per hour for" %>
+        <%= f.number_field(:time, in: 1..24, step: 1) %> hours
+        <%= f.submit %>
+    <% end %>
 </div>
 
-<br>
+<div style="width:80vw; display:flex; background-color:floralwhite; margin-top:15px; margin-bottom:15px; border-radius:5px; padding:10px;">
 <p>New review:</p>
 <% if can? :create, Review %>
     <%= form_with scope: :review, local: true do |f| %>
@@ -75,3 +69,4 @@
     <br>
 <% end %>
 
+</div>
