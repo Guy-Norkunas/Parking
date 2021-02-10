@@ -1,8 +1,8 @@
 <%= render 'shared/nav' %>
 
 
-<div style="width:100vw;">
-    <span style="max-width:40%">
+<div style="width:100vw; display:flex;">
+    <span style="max-width:400px">
         <p><%= @listing.address %></p>
         <p><%= @listing.user.email %></p>
         <p><%= @listing.description %></p>
@@ -24,7 +24,7 @@
         </p>
     </span>
 
-    <span style="height:100%; max-width:40%">
+    <span style="height:100%; max-width:400px">
         <%= image_tag(@listing.picture, sizes:"100%") if @listing.picture.attached? %>
     </span>
 </div>
