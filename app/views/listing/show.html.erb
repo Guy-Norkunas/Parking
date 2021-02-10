@@ -25,7 +25,7 @@
     </span>
 
     <span style="width:40vw">
-        <%= image_tag(@listing.picture, sizes:"20vw") if @listing.picture.attached? %>
+        <%= image_tag(@listing.picture, class:"listing_image") if @listing.picture.attached? %>
     </span>
 </div>
 
