@@ -4,10 +4,10 @@ Geocoder.configure(
     :lookup => :yandex,
   
     # IP address geocoding service (see below for supported options):
-    :ip_lookup => :maxmind,
+    :ip_lookup => :ipinfo_io,
   
     # to use an API key:
-    # api_key: 'AIzaSyA5EHDr60yCOtZNGL-rRsBmefMwh9xdp4Y',
+    # api_key: Rails.application.credentials.googleapi,
   
     # geocoding service request timeout, in seconds (default 3):
     :timeout => 5,
