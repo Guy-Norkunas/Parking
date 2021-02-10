@@ -1,22 +1,53 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
 <div>
     <%= request.location.city %>
     <span>
-        <%= link_to 'home', home_path %>
+        
     </span>
     <span>
-        <%= link_to 'search', search_page_path %>
+        
     </span>
     <span>
-        <%= link_to 'manage', manage_path %>
+        
     </span>
     <span>
-        <%= link_to 'bookings', bookings_path %>
+        
     </span>
     <span>
+        
+    </span>
+</div>
+
+<nav class="navbar navbar-expand-sm bg-dark">
+
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+        <% if current_user != nil %>
+            <%= current_user.email %>
+        <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'home', home_path %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'search', search_page_path %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'manage', manage_path %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'bookings', bookings_path %>
+    </li>
+    <li class="nav-item">
         <% if current_user == nil %>
             <%= link_to 'login/signup', new_user_session_path %>
         <% else %>
             <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
         <% end %>
-    </span>
-</div>
+    </li>
+    
+  </ul>
+
+</nav>
