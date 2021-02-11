@@ -2,7 +2,7 @@ Geocoder.configure(
 
     # geocoding service (see below for supported options):
     :lookup => :nominatim,
-    http_headers: { "User-Agent" => "© OpenStreetMap contributors" }),
+    http_headers: { "User-Agent" => "© OpenStreetMap contributors" },
   
     # IP address geocoding service (see below for supported options):
     :ip_lookup => :ipinfo_io,
