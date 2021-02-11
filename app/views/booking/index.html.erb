@@ -1,5 +1,5 @@
 <%= render 'shared/nav' %>
 
 <% @bookings.each do |booking| %>
-    <p>You had a booking at <%= booking.listing.address %> for <%= booking.time %> hours</p>
+    <p style="color:white; margin-top:10px;" >You had a booking at <%= booking.listing.address %> for <%= booking.time %> hours</p>
 <% end %>
